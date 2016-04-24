@@ -15,7 +15,7 @@
         <%= new java.util.Date() %> 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-4" >
+                <div class="col-xm-12 col-sm-6 col-md-6 col-lg-4" >
                     <form action="display.jsp"  method="POST" name="information">
                         <h4 class="text-info">Enter First Name: </h4>
                         <input type="text" name="first_name" class="form-control" /><br />
