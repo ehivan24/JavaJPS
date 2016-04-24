@@ -11,10 +11,9 @@
 
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <% Date date = new Date();%>
-        
-        <%= new java.util.Date() %> 
+        <h1>Register:</h1>
+        <h5 class="text-h5"><% Date date = new Date();%> 
+        <%= date %> </h5>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xm-12 col-sm-6 col-md-6 col-lg-4" >
@@ -29,8 +28,8 @@
                         <input type="text" placeholder="Gender" name="gender" class="form-control" /><br />
                         <h4 class="text-info">Enter Date of Birth </h4>
                         <input type="text" placeholder="Date of Birth" name="date" class="form-control"/><br />
-                            <input type="submit"  class="btn-info"/>
-                            <input type="reset" value="Clear" name="clear"  class="btn-info"/>
+                        <input type="submit"  class="btn-info"/>
+                        <input type="reset" value="Clear" name="clear"  class="btn-info"/>
                     </form>
                 </div>
             </div>

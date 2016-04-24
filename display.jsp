@@ -26,19 +26,24 @@
             boolean completedFields = false;
         %>
         
+        <!-- find a way better to check for these fields -->
         
-        <% if(firstName.equals("")){ %> <h3> Empty </h3> <% }%>
-        <% if(lastName.equals("")){ %> <h3> Empty </h3> <% }%>
-        <% if(email.equals("")){ %> <h3> Empty </h3> <% }%>
-        <% if(gender.equals("")){ %> <h3> Empty </h3> <% }%>
-        <% if(dateOfBirth.equals("")){ %> <h3> Empty </h3> <% }%>
+        <% if(firstName.equals("")){ completedFields = false; %> <h3 class="text-h3"> Empty First Name </h3> <% }%>
+        <% if(lastName.equals("")){ completedFields = false; %> <h3 class="text-h3"> Empty Last Name </h3> <% }%>
+        <% if(email.equals("")){ completedFields = false; %> <h3 class="text-h3"> Empty Email </h3> <% }%>
+        <% if(gender.equals("")){ completedFields = false; %> <h3 class="text-h3"> Empty Gender</h3> <% }%>
+        <% if(dateOfBirth.equals("")){ completedFields = false; %> <h3 class="text-h3"> Empty DOB</h3> <% }%>
+       
         
-        
-        <h5 class="text-h5"><%= firstName %></h5>
-        <h5 class="text-h5"><%= lastName %></h5>
-        <h5 class="text-h5"><%= email %></h5>
-        <h5 class="text-h5"><%= gender %></h5>
-        <h5 class="text-h5"><%= dateOfBirth %></h5>
+        <% if(completedFields){ %>
+            <h5 class="text-h5"><%= firstName %></h5>
+            <h5 class="text-h5"><%= lastName %></h5>
+            <h5 class="text-h5"><%= email %></h5>
+            <h5 class="text-h5"><%= gender %></h5>
+            <h5 class="text-h5"><%= dateOfBirth %></h5>
+            <!-- Save information to Database -->
+            
+        <% }%>
         
     </body>
 </html>
