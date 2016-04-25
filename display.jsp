@@ -5,6 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*" %>
+<%@page import="java.io.*" %>
+<%@page import="java.sql.*" %>
+<%@page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +21,10 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/Users"
+                           user="root" password="123456"
+                           />
         <h1>Hello </h1>
         <%
             String firstName = request.getParameter("first_name");
@@ -28,12 +38,14 @@
         
         <!-- find a way better to check for these fields -->
         
-        <% if(firstName.equals("")){ completedFields = false; %> <h3 class="text-h3"> Empty First Name </h3> <% }%>
-        <% if(lastName.equals("")){ completedFields = false; %> <h3 class="text-h3"> Empty Last Name </h3> <% }%>
-        <% if(email.equals("")){ completedFields = false; %> <h3 class="text-h3"> Empty Email </h3> <% }%>
-        <% if(gender.equals("")){ completedFields = false; %> <h3 class="text-h3"> Empty Gender</h3> <% }%>
-        <% if(dateOfBirth.equals("")){ completedFields = false; %> <h3 class="text-h3"> Empty DOB</h3> <% }%>
-       
+        <% if(firstName.equals("") ||lastName.equals("") || 
+                email.equals("") || gender.equals("") || dateOfBirth.equals("")){ 
+            completedFields = false; %> 
+            <h3 class="text-h3"> Empty Fields </h3> 
+            
+       <% }else{
+            completedFields = true;
+        }%>
         
         <% if(completedFields){ %>
             <h5 class="text-h5"><%= firstName %></h5>
@@ -42,8 +54,12 @@
             <h5 class="text-h5"><%= gender %></h5>
             <h5 class="text-h5"><%= dateOfBirth %></h5>
             <!-- Save information to Database -->
+            <sql:update dataSource="${snapshot}" var="result">
+                INSERT INTO users(firstname, lastname, email, gender, dateofbirth) VALUES('<%= firstName %>','<%= lastName%>','<%=email%>','<%=gender%>','<%=dateOfBirth%>');
+            </sql:update>
             
         <% }%>
+        <a href="showUsers.jsp">Users</a>
         
     </body>
 </html>
